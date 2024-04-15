@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void main ()
+void array_cut()
 {
 	char str[];
 	const char delim[] = " ,.!?:/\n\t|*-_=;" // Les délimiteurs sont l'espace, la virgule et le point d'exclamatio
