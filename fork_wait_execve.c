@@ -3,41 +3,36 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-int main()
+int main(void)
 {
-	printf("Parent process running...\n");
-	for (int child_num = 1; child_num <= 5; child_num++)
-	{
-		pid_t child_pid = fork();
+	pid_t my_pid;
+	pid_t child_pid = 1;
+	int i = 0;
+	int status;
+	char *argv[] = {"bin/ls", "-l", "tmp/", NULL};
 
-		if (child_pid == -1) 
+	my_pid = getpid();
+	while (i <= 4 && (child_pid != 0))
+	{
+		child_pid = fork();
+		if (child_pid == -1)
 		{
-			perror("Error:");
+			printf("error");
 			return (1);
 		}
-		else if (child_pid == 0)
-		{
-			// Child process
-			printf("Child process %d running...\n", child_num);
-			execlp("ls", "ls", "-l", "/tmp", NULL);
-			perror("Error:");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			// Parent process
-			int status;
-			wait(&status);
-			printf("Child process %d exited with status %d\n", child_num, WEXITSTATUS(status));
-		}
-	}
-	// Parent process
-	for (int i = 0; i < 5; i++)
-	{
-		int status;
 		wait(&status);
-		printf("Child process %d exited with status %d\n", i+1, WEXITSTATUS(status));
+		i++;
 	}
-	printf("All child processes have exited.\n");
+	if (child_pid == 0)
+	{
+		printf("ID child: %u\n\n ID father: %u\n", getpid(), getppid());
+		printf(" \n\n");
+	}
+	else
+	{
+		printf("%u I'm your father: %u\n", my_pid, child_pid);
+	}
+	if (execve(argv[0], argv, NULL) == -1)
+
 	return (0);
 }
