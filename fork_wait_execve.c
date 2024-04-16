@@ -13,7 +13,7 @@ int main()
 		if (child_pid == -1) 
 		{
 			perror("Error:");
-			return 1;
+			return (1);
 		}
 		else if (child_pid == 0)
 		{
@@ -31,6 +31,13 @@ int main()
 			printf("Child process %d exited with status %d\n", child_num, WEXITSTATUS(status));
 		}
 	}
+	// Parent process
+	for (int i = 0; i < 5; i++)
+	{
+		int status;
+		wait(&status);
+		printf("Child process %d exited with status %d\n", i+1, WEXITSTATUS(status));
+	}
 	printf("All child processes have exited.\n");
-	return 0;
+	return (0);
 }
