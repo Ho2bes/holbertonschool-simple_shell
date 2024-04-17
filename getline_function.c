@@ -1,4 +1,5 @@
 // Déclaration du prototype de la fonction getline personnalisée
+
 void custom_getline(char **lineptr, size_t *bufsize, int *status);
 int main()
 {
