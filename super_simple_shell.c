@@ -1,81 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/wait.h>
-#include <string.h>
 
-// Affiche les arguments passés au programme
-void display_arguments(int ac, char** av) {
-    int i = 0;
-    while (av[i] != NULL) {
-        printf("%s\n", av[i]);
-        i++;
-    }
-}
+#define MAX_COMMAND_LENGTH 100
 
-// Affiche l'utilisation du programme
-void display_usage(char* program_name) {
-    printf("Usage: %s <command>\n", program_name);
-}
+int main() {
+    char command[MAX_COMMAND_LENGTH];
 
-// Exécute une commande spécifique
-void execute_command(char* command) {
-    pid_t my_pid;
-    pid_t child_pid = 1;
-    int i = 0;
-    int status;
-    char* argv[] = { "/bin/sh", "-c", command, NULL }; // Utilisation de /bin/sh pour interpréter la commande
+    while (1) {
+        // Afficher le prompt
+        printf("#cisfun$ ");
 
-    my_pid = getpid();
+        // Lire la commande de l'utilisateur
+        if (fgets(command, sizeof(command), stdin) == NULL) {
+            break; // Sortir de la boucle si Ctrl+C est pressé ou si fgets échoue
+        }
 
-    while (i <= 4 && (child_pid != 0)) {
-        child_pid = fork();
-        if (child_pid == -1) {
+        // Supprimer le saut de ligne à la fin de la commande
+        command[strcspn(command, "\n")] = '\0';
+
+        // Fork pour créer un nouveau processus
+        pid_t pid = fork();
+
+        if (pid < 0) {
             perror("fork");
             exit(EXIT_FAILURE);
+        } else if (pid == 0) {
+            // Processus enfant : exécuter la commande
+            if (execlp(command, command, (char *)NULL) == -1) {
+                perror("execlp");
+                exit(EXIT_FAILURE);
+            }
+        } else {
+            // Processus parent : attendre la fin du processus enfant
+            int status;
+            wait(&status);
         }
-        wait(&status);
-        i++;
     }
 
-    if (child_pid == 0) {
-        printf("ID child: %u\n\n ID father: %u\n", getpid(), getppid());
-        printf(" \n\n");
-    } else {
-        printf("%u I'm your father: %u\n", my_pid, child_pid);
-    }
-
-    if (execvp(argv[0], argv) == -1) {
-        perror("execvp");
-        exit(EXIT_FAILURE);
-    }
-}
-
-int main(void) {
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
-
-    // Afficher les instructions d'utilisation
-    display_usage("program_name");
-
-    // Lire la commande depuis l'entrée standard
-    printf("$ ");
-    read = getline(&line, &len, stdin);
-    if (read == -1) {
-        perror("getline");
-        exit(EXIT_FAILURE);
-    }
-
-    // Supprimer le saut de ligne à la fin de la commande
-    if (line[read - 1] == '\n') {
-        line[read - 1] = '\0';
-    }
-
-    // Exécuter la commande
-    execute_command(line);
-
-    free(line);
     return 0;
 }
