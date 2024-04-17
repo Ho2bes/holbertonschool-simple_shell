@@ -10,7 +10,7 @@ int main() {
 
     while (1) { // Boucle infinie pour l'exécution continue du shell
         // Afficher le prompt
-        printf("#cisfun$ ");
+        printf("#$ ");
 
         // Lire la commande de l'utilisateur
         if (fgets(user_command, sizeof(user_command), stdin) == NULL) {
