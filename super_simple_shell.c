@@ -6,27 +6,27 @@
 
 void display_arguments(int ac, char** av)
 {
-	// Déclaration de variables pour l'itération à travers les argume
+	// Déclaration de variables pour l'itératioa  travers les argumennts
 	int i = 0;  // indice pour parcourir les arguments principaux
 	int j = 0;  // indice pour parcourir chaque caractère dans un argument
 
-	// Vérifier si aucun argument n'a été pa
+	// Vérifier si aucun argument n'a étéss�s
 	if (av == NULL)
 		return;  // Sortir de la fonction main si aucun argument n'est disponible
 
-	// Parcourir tous les arguments jusqu'à ce que le pointeur vers le prochain argument soit NUL
+	// Parcourir tous les arguments jusqu'a ce que le pointeur vers le prochain argument soit NULL
 	while (av[i] != NULL)
 	{
 		j = 0;  // Réinitialiser l'indice de caractère pour chaque nouvel argument
 
-		// Parcourir chaque caractère de l'argument actuel jusqu'à la fin de la chaîne ('\0')
+		// Parcourir chaque caractère de l'argument actuel jusqua la fin de la chaîne ('\0')
 		while (av[i][j] != '\0')
 		{
 			putchar(av[i][j]);  // Afficher le caractère actuel
-			j++;  // Passer au caractère suivant dans le même argume
+			j++;  // Passer au caractère suivant dans le même argunt
 		}
-		putchar('\n');  // Ajouter un saut de ligne après avoir affiché tous les caractères de l'argum
-		i++;  // Passer à l'argument suivant
+		putchar('\n');  // Ajouter un saut de ligne après avoir afficer� tous les caractères de l'ament
+		i++;  // Passer a  l'argument suivant
 	}
 }
 void display_usage(char* program_name)
@@ -38,7 +38,7 @@ void display_usage(char* program_name)
 void execute_command()
 {
 	pid_t my_pid;  // PID du processus principal (père)
-	pid_t child_pid = 1;  // PID du processus enfant, initialisé à 1 pour entrer dans la boucle au moins une fo
+	pid_t child_pid = 1;  // PID du processus enfant, initialiséa 1 pour entrer dans la boucle au moins une fois
 	int i = 0;  // Compteur utilisé pour limiter le nombre de fork
 	int status;  // Variable pour stocker le statut du processus enfant termin�
 	char* argv[] = { "bin/ls", "-l", "tmp/", NULL };  // Arguments pour la commande à exécuter avec execve()
