@@ -12,14 +12,15 @@ int main()
 		custom_getline(&user_input, &buffer_size, &read_status);
 	// Vérification du statut de lecture
 
-	if (read_status == -1) { // En cas d'erreur de lecture
-		fprintf(stderr, "Erreur lors de la lecture de la ligne\n");
-		// Gérer l'erreur ici, par exemple, libérer la mémoire allo
-		free(user_input);
-		return (EXIT_FAILURE); // Quitter le programme avec un code d'erreur
-	}
-
-	printf("Vous avez saisi: %s\n", user_input); // Afficher la saisie de l'utilisateur
+		if (read_status == -1)
+			{ // En cas d'erreur de lecture
+			fprintf(stderr, "Erreur lors de la lecture de la ligne\n");
+			// Gérer l'erreur ici, par exemple, libérer la mémoire allo
+			free(user_input);
+			return (EXIT_FAILURE); // Quitter le programme avec un code d'erreur
+			}
+			get_and_use_command(user_input)
+	/*printf("Vous avez saisi: %s\n", user_input);Afficher la saisie de l'utilisateur*/
 	}
 	free(user_input); // Libérer la mémoire allouée pour la saisie de l'utilisar
 	return EXIT_SUCCESS; // Quitter le programme avec un code de succè
@@ -39,4 +40,21 @@ void custom_getline(char **lineptr, size_t *bufsize, int *status)
 	{
 		*status = -1; // Affecter -1 au statut en cas d'erreur
 	}
+}
+
+void get_and_use_command(char *user_input[])
+{
+	int i;
+	char *path = (retrouver le path)
+
+	user_input[i] = strtok(user_input, " ")
+
+}
+
+
+        token = strtok(NULL, ":");
+    }
+
+    free(command);
+    return 0;
 }
