@@ -18,23 +18,31 @@ char* getenv_var(const char *var_name, char **env) {
     return NULL;
 }
 // Fonction pour trouver le chemin complet d'une commande
-char* find_command_path(const char *command, char **env) {
+char* find_command_path(char **command, char **env) {
     char *search_path = getenv_var("PATH", env);
-    char *token = strtok(search_path, ":");
+	char *cpy_path = search_path;
+    char *token = strtok(cpy_path, ":");
     char full_path[256];
     char* result = NULL;
-    while (token != NULL) {
-        snprintf(full_path, sizeof(full_path), "%s/%s", token, command);
-        struct stat st;
-        if (stat(full_path, &st) == 0 && st.st_mode & S_IXUSR) {
-            result = strdup(full_path);
-            break;
-        }
-        token = strtok(NULL, ":");
-    }
+	int i, j;
+	for (i = 0; command[i] != NULL; i++)
+	{
+		printf("lol\n");
+    	while (token != NULL) {
+        	snprintf(full_path, sizeof(full_path), "%s/%s", token, command[i]);
+        	struct stat st;
+        	if (stat(full_path, &st) == 0 && st.st_mode & S_IXUSR) {
+            	result = strdup(full_path);
+            	break;
+        	}
+        	token = strtok(NULL, ":");
+			printf("flo\n");
+    	}
+	}
     if (result == NULL) {
-        fprintf(stderr, "Erreur : Commande '%s' non trouvée ou non exécutable\n", command);
+        fprintf(stderr, "Erreur : Commande '%s' non trouvée ou non exécutable\n", command[i]);
     }
+	free();
     return result;
 }
 // Fonction pour découper une commande en tokens
@@ -61,7 +69,7 @@ char** tokenize_command(char *command) {
 // Fonction pour exécuter une commande
 void execute_command(char* command, char **env) {
     char** command_tokens = tokenize_command(command);
-    char* command_path = find_command_path(command_tokens[0], env);
+    char* command_path = find_command_path(command_tokens, env);
     if (command_path == NULL) {
         for (int i = 0; command_tokens[i] != NULL; i++) {
             free(command_tokens[i]);
