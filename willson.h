@@ -16,7 +16,7 @@
 #include <limits.h>
 
 char *getenv_var(const char *var_name, char **env);
-char *find_command_path(const char *command, char **env);
+char *find_command_path(const char *command);
 char **tokenize_command(char *command);
 void execute_command(char *command, char **env);
 #endif
