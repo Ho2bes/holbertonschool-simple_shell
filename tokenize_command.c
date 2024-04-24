@@ -9,7 +9,7 @@
 
 char **tokenize_command(char *command)
 {
-	char *saveptr;/* Dynamically allocate memory for tokens */
+	char *saveptr;
 	int i = 0;
 	char *token;
 	char **tokens = malloc(sizeof(char *) * 256);
@@ -21,24 +21,18 @@ char **tokenize_command(char *command)
 	}
 
 	token = strtok_r(command, " ", &saveptr);
-	/* Tokenize the command string */
-	/* Initialize index of the tokens array */
+
 	while (token != NULL)
 	{
 		tokens[i] = strdup(token);
-		/* Duplicate the token */
 		if (tokens[i] == NULL)
 		{
 			perror("strdup");
 			exit(EXIT_FAILURE);
 		}
 		i++;
-		/* Move to the next token */
 		token = strtok_r(NULL, " ", &saveptr);
-		/* Get the next token */
 	}
 	tokens[i] = NULL;
-	/* Mark the end of tokens */
 	return (tokens);
-	/* Return the tokens array */
 }
