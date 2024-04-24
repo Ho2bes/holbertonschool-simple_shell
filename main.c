@@ -12,7 +12,10 @@
 int main(int argc, char **argv, char **env)
 {
 	char *input = NULL;
-	size_t bufsize = 0; ssize_t nb; (void) argc; (void) argv;
+	size_t bufsize = 0;
+	ssize_t nb;
+	(void) argc;
+	(void) argv;
 
 	while (1)
 	{

@@ -3,7 +3,6 @@
 /**
  * find_command_path - find the path of a command
  * @command: input of command
- * @env: environment variables
  * Return: string of the path
  */
 char *find_command_path(const char *command)
@@ -20,12 +19,12 @@ char *find_command_path(const char *command)
 	{ /* Check if the file exists and is executable */
 		if (stat(command, &st) == 0 && st.st_mode & S_IXUSR)
 		{
-			return strdup(command); /* Return the found full path */
+			return (strdup(command)); /* Return the found full path */
 		}
 		else
 		{
 			fprintf(stderr, "Error: Command '%s' not found\n", command);
-			return NULL;
+			return (NULL);
 		}
 	}
 	while (token != NULL)/* Traverse the directories in the PATH */
@@ -43,7 +42,7 @@ char *find_command_path(const char *command)
 	}
 	/* If the command was not found, display an error */
 	if (result == NULL)
-		fprintf(stderr, "Error: Command '%s' not found or not executable\n", command);
+		fprintf(stderr, "Error: Command '%s' not found\n", command);
 	free(search_path);
-	return result; /* Return the full path of the command */
+	return (result); /* Return the full path of the command */
 }
