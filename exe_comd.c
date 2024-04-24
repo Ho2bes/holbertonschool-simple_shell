@@ -9,7 +9,7 @@ void execute_command(char *command, char **env)
 {
 	/* Tokenizing the command */
 	char **command_tokens = tokenize_command(command);
-	char *command_path = find_command_path(command_tokens[0], env);
+	char *command_path = find_command_path(command_tokens[0]);
 	/* Finding the full path of the command */
 	int i, status;
 	pid_t pid; /* Declaration moved outside of the if-else block*/
