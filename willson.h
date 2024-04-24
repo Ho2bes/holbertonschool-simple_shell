@@ -12,6 +12,7 @@
 #include <pwd.h>
 #include <sys/types.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 char *getenv_var(const char *var_name, char **env);
 char *find_command_path(const char *command, char **env);
