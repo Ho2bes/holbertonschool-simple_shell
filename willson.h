@@ -19,4 +19,5 @@ char *getenv_var(const char *var_name, char **env);
 char *find_command_path(const char *command);
 char **tokenize_command(char *command);
 void execute_command(char *command, char **env);
+char *custom_strtok_r(char *command, const char *delim, char **array_str);
 #endif

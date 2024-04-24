@@ -20,7 +20,7 @@ char **tokenize_command(char *command)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok_r(command, " ", &saveptr);
+	token = custom_strtok_r(command, " ", &saveptr);
 
 	while (token != NULL)
 	{
@@ -31,7 +31,7 @@ char **tokenize_command(char *command)
 			exit(EXIT_FAILURE);
 		}
 		i++;
-		token = strtok_r(NULL, " ", &saveptr);
+		token = custom_strtok_r(NULL, " ", &saveptr);
 	}
 	tokens[i] = NULL;
 	return (tokens);
