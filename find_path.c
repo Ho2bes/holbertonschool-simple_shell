@@ -5,9 +5,9 @@
  * @command: input of command
  * Return: string of the path
  */
-char *find_command_path(const char *command)
+char *find_command_path(const char *command, char **env)
 {
-	char *search_path = strdup(getenv("PATH"));
+	char *search_path = strdup(getenv_var("PATH", env));
 	char *token = strtok(search_path, ":");
 	char full_path[PATH_MAX];
 	char *result = NULL;

@@ -9,7 +9,7 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 {
 	/* Tokenizing the command */
 	char **command_tokens = tokenize_command(command);
-	char *command_path = find_command_path(command_tokens[0]);
+	char *command_path = find_command_path(command_tokens[0], env);
 	/* Finding the full path of the command */
 	int i, status;
 	pid_t pid; /* Declaration moved outside of the if-else block*/
@@ -33,7 +33,7 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 		{
 			fprintf(stderr,
 				"./hsh: 1: %s No such file or directory", command_tokens[0]);
-			printf(" \n");
+			printf("\n");
 			exit(127);
 		}
 	}
