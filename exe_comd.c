@@ -31,7 +31,7 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 	{ /* Child process */
 		if (execve(command_path, command_tokens, env) == -1)
 		{
-			fprintf(stderr, "./hsh: No such file or directory");
+			fprintf(stderr, "./hsh: 1: %s No such file or directory", command_tokens[0]);
 			printf(" \n");
 			exit(127);
 		}

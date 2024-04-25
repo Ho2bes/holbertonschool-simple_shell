@@ -22,7 +22,7 @@ char *find_command_path(const char *command)
 		}
 		else
 		{
-			fprintf(stderr, "Error: Command '%s' not found\n", command);
+			fprintf(stderr, "/hsh: 1: %s: not found\n", command);
 			free(search_path); /* Libérer la mémoire avant de retour*/
 			return (NULL);
 		}
@@ -41,6 +41,6 @@ char *find_command_path(const char *command)
 
 	free(search_path); /*Libérer la mémoire avant de retou */
 	if (result == NULL)
-		fprintf(stderr, "./hsh: %s not found\n", command);
+		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
 	return (result);
 }
