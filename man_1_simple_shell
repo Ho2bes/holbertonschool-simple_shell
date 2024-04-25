@@ -4,24 +4,23 @@
 .\"man mdoc for the short list of editing options
 .\"/usr/share/misc/mdoc.template
 .Dd 24/4/24               \" DATE
-.Dt Simple_shell 1       \" Program name and manual section number
-.TH "Avril 24/04/2024"
+.Dt MonShell 1           \" Program name and manual section number
+.TH "April 24, 2024"
 .Sh NAME                 \" Section Header - required - don't modify
 .\" The following lines are read in generating the apropos(man -k) database. Use only key
 .\" words here as the database is built based on the words here and in the .ND line.
-.Nm ./hsh [options] [file]
+.Nm ./shell [options] [script]
 .\" Use .Nm macro to designate other names for the documented program.
 .Nd the simple standard command language interpreter
 .Sh SYNOPSIS             \" Section Header - required - don't modify
 .Nm
-.Op Fl abcd              \" [-abcd]
-.Op Fl a Ar path         \" [-a path]
-.Op Ar file              \" [file]
-.Op Ar                   \" [file ...]
-.Ar arg0                 \" Underlined argument - use .Ar anywhere to underline
-arg2 ...                 \" Arguments
+.Op Fl abc              \" Options
+.Op Fl f Ar script      \" Execute a script
+.Op Ar file             \" Input file
+.Ar arg0                \" Underlined argument - use .Ar anywhere to underline
+arg2 ...                \" Arguments
 .Sh DESCRIPTION          \" Section Header - required - don't modify
-Use the .Nm macro to refer to your program throughout the man page like such:
+Use the .Nm macro to refer to program throughout the man page like such:
 .Nm
 Underlining is accomplished with the .Ar macro like this:
 .Ar underlined text .
@@ -41,26 +40,53 @@ Description of -a flag
 .It Fl b
 Description of -b flag
 .El                      \" Ends the list
+.Sh FUNCTIONS            \" Section Header - Custom section for function documentation
 .Pp
-.\" .Sh ENVIRONMENT      \" May not be needed
-.\" .Bl -tag -width "ENV_VAR_1" -indent \" ENV_VAR_1 is width of the string ENV_VAR_1
-.\" .It Ev ENV_VAR_1
-.\" Description of ENV_VAR_1
-.\" .It Ev ENV_VAR_2
-.\" Description of ENV_VAR_2
-.\" .El
-.Sh FILES                \" File used or created by the topic of the man page
-.Bl -tag -width "/Users/joeuser/Library/really_long_file_name" -compact
-.It Pa /usr/share/file_name
-FILE_1 description
-.It Pa /Users/joeuser/Library/really_long_file_name
-FILE_2 description
+The following functions are implemented in this program:
+.Bl -tag -width "custom_strtok_r" -compact
+.It Fn custom_strtok_r "char *custom_strtok_r(char *command, const char *delim, char **array_str)"
+Tokenizes a string into tokens based on a delimiter and maintains a state for reentrant usage.
+.Pp
+.It Fn execute_command "void execute_command(char *command, char **env)"
+Executes the specified command with the given environment variables.
+.Pp
+.It Fn find_command_path "char *find_command_path(const char *command)"
+Searches for the full path of the specified command in the directories listed in the PATH environment variable.
+.Pp
+.It Fn getenv_var "char *getenv_var(const char *var_name, char **env)"
+Retrieves the value of the specified environment variable from the given array of environment variables.
+.Pp
+.It Fn tokenize_command "char **tokenize_command(char *command)"
+Tokenizes a command string into an array of tokens based on spaces.
 .El                      \" Ends the list
+.Sh EXAMPLES             \" Section Header - required - don't modify
+.\" Provide some examples of common or recommended usage.
+.Pp
+To run a script named 'script.sh':
+.Bd -literal
+$ shell -f script.sh
+.Ed
+.Pp
+To execute a command with additional arguments:
+.Bd -literal
+$ shell -a path/to/file arg1 arg2
+.Ed
+.Sh DIAGNOSTICS          \" Section Header - required - don't modify
+.\" Document any error messages that the program might generate (optional).
+.Pp
+If the specified file does not exist, the shell will display an error message.
+.Sh ENVIRONMENT          \" Section Header - required - don't modify
+.\" Document any environment variables that affect the behavior of the program (optional).
+.Pp
+The environment variable 'SHELL' specifies the default shell to be used.
+.Sh EXIT STATUS          \" Section Header - required - don't modify
+.\" Document the exit status codes of the program (optional).
+.Pp
+The shell returns 0 upon successful execution, and nonzero values upon failure.
 .Sh AUTHOR
 .UR https://github.com/Grilindor : CORNABAS Marc
 .UE
 .I https://github.com/Ho2bes : BRAULT DOMINGO Nicolas
-
 .UE
 .Sh SEE ALSO
 sh
