@@ -35,7 +35,7 @@ int main(int argc, char **argv, char **env)
 			exit(status);/* Exit the loop if getline fails */
 		}
 		if (nb <= 1)
-            continue;/* If line is empty or contains only a newline character */
+			continue;/* If line empty or only a newline character */
 		if (nb > 1 && input[nb - 1] == '\n')
 		{
 			input[nb - 1] = '\0';
