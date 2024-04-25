@@ -1,4 +1,4 @@
-![**Conquest of the Shell**](https://github.com/Ho2bes/boom/blob/main/shell%20conquest.jpg)
+![**Conquest of the Shell**](https://github.com/Ho2bes/boom/blob/main/shell%20conquest%202.jpg)
 # C - Simple Shell
 
 We have create a simple UNIX command interpreter in C programming language.
