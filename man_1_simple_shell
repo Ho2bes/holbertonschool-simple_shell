@@ -6,11 +6,11 @@
 .Dd 24/4/24               \" DATE
 .Dt MonShell 1           \" Program name and manual section number
 .TH "April 24, 2024"
-.Sh NAME                 \" Section Header - required - don't modify
+.Sh NAME                \" Section Header - required - don't modify
 .\" The following lines are read in generating the apropos(man -k) database. Use only key
 .\" words here as the database is built based on the words here and in the .ND line.
-.Nm ./shell [options] [script]
-.\" Use .Nm macro to designate other names for the documented program.
+.Nm ./shell
+.\" Use .Nm macro to designate other names for the documented program
 .Nd the simple standard command language interpreter
 .Sh SYNOPSIS             \" Section Header - required - don't modify
 .Nm
@@ -21,16 +21,17 @@
 arg2 ...                \" Arguments
 .Sh DESCRIPTION          \" Section Header - required - don't modify
 Use the .Nm macro to refer to program throughout the man page like such:
-.Nm
+.Nm Shell
 Underlining is accomplished with the .Ar macro like this:
 .Ar underlined text .
 .Pp                      \" Inserts a space
-A list of items with descriptions:
-.Bl -tag -width -indent  \" Begins a tagged list
-.It item a               \" Each item preceded by .It macro
-Description of item a
-.It item b
-Description of item b
+is a standard command interpreter that allows executing system commands and scripts.
+It supports various command-line options and enables real-time command execution as well as script execution.
+The shell automatically searches for the full path of specified commands in the PATH environment variable.
+To use Shell, you can enter commands directly into the terminal or execute a script using the -f option.
+The -a option allows specifying a file to use as input for the program.
+You can also specify additional options such as -b, -c, and -d to customize the behavior of the shell.
+To stop the execution of Shell, you can enter the "exit" command or use Ctrl + C.
 .El                      \" Ends the list
 .Pp
 A list of flags and their descriptions:
@@ -88,5 +89,4 @@ The shell returns 0 upon successful execution, and nonzero values upon failure.
 .UE
 .I https://github.com/Ho2bes : BRAULT DOMINGO Nicolas
 .UE
-.Sh SEE ALSO
 sh
