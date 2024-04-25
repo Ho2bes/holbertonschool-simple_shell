@@ -41,6 +41,6 @@ char *find_command_path(const char *command)
 
 	free(search_path); /*Libérer la mémoire avant de retou */
 	if (result == NULL)
-		fprintf(stderr, "./hsh FIND: %s not found\n", command);
+		fprintf(stderr, "./hsh: %s not found\n", command);
 	return (result);
 }

@@ -25,13 +25,13 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 	if (pid == -1)
 	{
 		perror("erreur fork");
-		exit(-1);
+		return (-1);
 	}
 	else if (pid == 0)
 	{ /* Child process */
 		if (execve(command_path, command_tokens, env) == -1)
 		{
-			fprintf(stderr, "./hsh: 1: %s: not found\n", command_tokens[0]);
+			fprintf(stderr, "./hsh: No such file or directory");
 			printf(" \n");
 			exit(127);
 		}
@@ -45,7 +45,7 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 		if (waitpid(pid, &status, 0) == -1)
 		{
 			perror("waitpid");
-			exit(EXIT_FAILURE);
+			return (1);
 		}
 	}
 	return (0);
