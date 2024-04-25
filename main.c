@@ -29,7 +29,6 @@ int main(int argc, char **argv, char **env)
 		nb = getline(&input, &bufsize, stdin);
 		if (nb == -1)
 		{
-			write(STDOUT_FILENO, "\n", 1);
 			if (input)
 				free(input);
 			exit(status);/* Exit the loop if getline fails */

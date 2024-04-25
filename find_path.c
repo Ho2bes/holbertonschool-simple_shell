@@ -30,7 +30,7 @@ char *find_command_path(const char *command)
 
 	while (token != NULL)
 	{
-		snprintf(full_path, sizeof(full_path), "%s/%s", token, command);
+		sprintf(full_path, "%s/%s", token, command);
 		if (stat(full_path, &st) == 0 && st.st_mode & S_IXUSR)
 		{
 			result = strdup(full_path);
