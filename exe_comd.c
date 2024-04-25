@@ -5,7 +5,7 @@
  * @env: environment variables
  * Return: Void
  **/
-void execute_command(char *command, char **env)
+int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 {
 	/* Tokenizing the command */
 	char **command_tokens = tokenize_command(command);
@@ -19,20 +19,21 @@ void execute_command(char *command, char **env)
 		for (i = 0; command_tokens[i] != NULL; i++)
 			free(command_tokens[i]);
 		free(command_tokens);
-		return;
+		return(127);
 	}
 	pid = fork(); /* Creating a child process */
 	if (pid == -1)
 	{
-		perror("fork");
-		exit(EXIT_FAILURE);
+		perror("erreur fork");
+		exit(-1);
 	}
 	else if (pid == 0)
 	{ /* Child process */
 		if (execve(command_path, command_tokens, env) == -1)
 		{
-			perror("execve");
-			exit(EXIT_FAILURE);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", command_tokens[0]);
+			printf(" \n");
+			exit(127);
 		}
 	}
 	else
@@ -47,4 +48,5 @@ void execute_command(char *command, char **env)
 			exit(EXIT_FAILURE);
 		}
 	}
+	return(0);
 }

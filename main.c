@@ -14,6 +14,7 @@ int main(int argc, char **argv, char **env)
 	char *input = NULL;
 	size_t bufsize = 0;
 	ssize_t nb;
+	int status = 0;
 	(void) argc;
 	(void) argv;
 
@@ -28,7 +29,11 @@ int main(int argc, char **argv, char **env)
 		nb = getline(&input, &bufsize, stdin);
 		if (nb == -1)
 		{
-			break;
+			write(STDOUT_FILENO, "\n", 1);
+			if (input)
+				free(input);
+			exit(status);
+			/*break;*/
 			/* Exit the loop if getline fails */
 		}
 		if (nb > 1 && input[nb - 1] == '\n')
@@ -40,7 +45,8 @@ int main(int argc, char **argv, char **env)
 			break;
 			/* Exit the loop if the command is "exit" */
 		}
-		execute_command(input, env);
+		status = execute_command(input, env);
+		printf("result status main %d\n", status);
 	}
 	free(input);
 	/* Check if input is NULL before freeing it */
