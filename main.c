@@ -45,8 +45,9 @@ int main(int argc, char **argv, char **env)
 			/* Exit the loop if the command is "exit" */
 		}
 		status = execute_command(input, env);
+		free(input);
+		input = NULL;
 	}
-	free(input);
 	/* Check if input is NULL before freeing it */
 	return (0);
 }
