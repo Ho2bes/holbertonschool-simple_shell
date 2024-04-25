@@ -19,7 +19,7 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 		for (i = 0; command_tokens[i] != NULL; i++)
 			free(command_tokens[i]);
 		free(command_tokens);
-		return(127);
+		return (127);
 	}
 	pid = fork(); /* Creating a child process */
 	if (pid == -1)
@@ -48,5 +48,5 @@ int execute_command(char *command, char **env)/*argv[0], pr recup ./hsh*/
 			exit(EXIT_FAILURE);
 		}
 	}
-	return(0);
+	return (0);
 }
