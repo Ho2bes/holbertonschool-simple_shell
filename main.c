@@ -41,13 +41,13 @@ int main(int argc, char **argv, char **env)
 		}
 		if (strcmp(input, "exit") == 0)
 		{
-			break;
-			/* Exit the loop if the command is "exit" */
+			free(input);
+			input = NULL;
+			break;/* Exit the loop if the command is "exit" */
 		}
 		status = execute_command(input, env);
 		free(input);
-		input = NULL;
+		input = NULL;/* Check if input is NULL before freeing it */
 	}
-	/* Check if input is NULL before freeing it */
 	return (0);
 }
