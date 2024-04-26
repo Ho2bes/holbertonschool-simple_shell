@@ -45,9 +45,6 @@ Description of -b flag
 .Pp
 The following functions are implemented in this program:
 .Bl -tag -width "custom_strtok_r" -compact
-.It Fn custom_strtok_r "char *custom_strtok_r(char *command, const char *delim, char **array_str)"
-Tokenizes a string into tokens based on a delimiter and maintains a state for reentrant usage.
-.Pp
 .It Fn execute_command "void execute_command(char *command, char **env)"
 Executes the specified command with the given environment variables.
 .Pp
