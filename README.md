@@ -70,16 +70,6 @@ All files are written in C and follows the Betty coding style for Holberton Scho
 
 ### Files and functions description
 
-#### **custom_strtok_r**
-
-The custom_strtok_r function tokenizes a string into tokens using a specified delimiter.
-
-***Return***
-
-It returns a pointer to the tokenized token.
-
-____
-
 #### **find_command_path**
 
 The find_command_path function searches for the full path of a specified command by traversing the directories listed in the PATH environment variable.
@@ -135,7 +125,7 @@ To check for memory leaks, you can use the valgrind tool. Run the program with v
 $ valgrind ./shell
 ````
 
-![**Flowchart of our code**](https://github.com/Ho2bes/boom/blob/main/Shell%20Flowchart.jpeg)
+![**Flowchart of our code**](https://github.com/Ho2bes/boom/blob/main/Blank%20diagram.jpeg)
 
 ## Bugs
 There are no known bugs so far. Do not hesitate to send us any suggestions or problems encountered when using our shell.
