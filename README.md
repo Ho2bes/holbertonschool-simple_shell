@@ -130,7 +130,7 @@ $ valgrind ./shell
 ## Bugs
 There are no known bugs so far. Do not hesitate to send us any suggestions or problems encountered when using our shell.
 ## 🚀 About Us
-**M. CORNABAS and N. BRAULT DOMINGO** are two students at Holberton School, the best school in the world.
+**M. CORNABAS and N. B. DOMINGO** are two students at Holberton School, the best school in the world.
 
 
 ## Credits
